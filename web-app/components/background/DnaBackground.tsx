@@ -1,12 +1,27 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function DnaBackground() {
-    const numPairs = 40;
+    const [numPairs, setNumPairs] = useState(20); // Default lower for safety
     const width = 1600;
     const spacing = width / numPairs;
+
+    useEffect(() => {
+        // Adjust particle count based on device capability/width
+        const updatePairs = () => {
+            if (window.innerWidth < 768) {
+                setNumPairs(15); // Drastically reduce for mobile
+            } else {
+                setNumPairs(40); // Full detail for desktop
+            }
+        };
+
+        updatePairs();
+        window.addEventListener('resize', updatePairs);
+        return () => window.removeEventListener('resize', updatePairs);
+    }, []);
 
     // Mouse Parallax Logic
     const x = useMotionValue(0);

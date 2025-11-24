@@ -52,6 +52,9 @@ export function Hero() {
     const mouseY = useSpring(y, { stiffness: 500, damping: 50 });
 
     function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+        // Disable tilt on mobile to save resources
+        if (window.innerWidth < 768) return;
+
         const { left, top, width, height } = currentTarget.getBoundingClientRect();
         x.set(clientX - left - width / 2);
         y.set(clientY - top - height / 2);
@@ -76,6 +79,7 @@ export function Hero() {
                             fill
                             className="object-contain"
                             priority
+                            sizes="(max-width: 768px) 160px, 192px"
                         />
                     </div>
                 </div>
