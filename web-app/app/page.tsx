@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
-import { DnaBackground } from "@/components/background/DnaBackground";
 import { Hero } from "@/components/sections/Hero";
+
+// Lazy load heavy components
+const DnaBackground = dynamic(() => import("@/components/background/DnaBackground").then(mod => mod.DnaBackground));
 
 // Lazy load below-fold sections to improve initial bundle size and TBT
 const Tension = dynamic(() => import("@/components/sections/Tension").then(mod => mod.Tension));

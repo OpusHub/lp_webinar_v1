@@ -87,12 +87,7 @@ export function Hero() {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left Column: Copy */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="space-y-8"
-                    >
+                    <div className="space-y-8">
 
 
                         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -128,7 +123,7 @@ export function Hero() {
                                 Evento para Donos de E-commerce
                             </span>
                         </div>
-                    </motion.div>
+                    </div>
 
                     {/* Right Column: Form with 3D Tilt */}
                     <motion.div
