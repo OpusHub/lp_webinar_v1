@@ -3,10 +3,47 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Calendar, Clock, Hourglass, User, Mail, Phone, ShoppingBag } from "lucide-react";
 import { Button, Card, Input, Select } from "../ui";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 
 export function Hero() {
+    // Form State
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        channel: ""
+    });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+
+        try {
+            const response = await fetch('https://webhook.opusbr.com/webhook/forms-webinar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    source: 'hero_form',
+                    submittedAt: new Date().toISOString()
+                }),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setStatus('error');
+        }
+    };
+
     // 3D Tilt Logic
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -104,49 +141,93 @@ export function Hero() {
                                 y.set(0);
                             }}
                         >
-                            <Card className="border-opus-purple/50 shadow-[0_0_50px_rgba(106,17,203,0.15)]">
-                                <div className="text-center mb-8 transform translate-z-10">
-                                    <h3 className="text-2xl font-bold text-white mb-2">Garanta sua vaga gratuita</h3>
-                                    <p className="text-sm text-gray-400">Junte-se a elite do e-commerce nacional.</p>
-                                </div>
-
-                                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                                    <Input
-                                        placeholder="Nome Completo"
-                                        icon={<User size={18} />}
-                                        required
-                                    />
-                                    <Input
-                                        type="email"
-                                        placeholder="E-mail Corporativo"
-                                        icon={<Mail size={18} />}
-                                        required
-                                    />
-                                    <Input
-                                        type="tel"
-                                        placeholder="WhatsApp / Telefone"
-                                        icon={<Phone size={18} />}
-                                        required
-                                    />
-                                    <Select icon={<ShoppingBag size={18} />} defaultValue="">
-                                        <option value="" disabled>Qual seu canal de vendas principal?</option>
-                                        <option value="site">Site Próprio</option>
-                                        <option value="marketplace">Marketplace</option>
-                                        <option value="hibrido">Híbrido (Ambos)</option>
-                                        <option value="nao-vendo">Ainda não vendo</option>
-                                    </Select>
-
-                                    <Button size="lg" className="w-full mt-4 neon-glow group">
-                                        <span className="relative z-10">QUERO DOMINAR MEU NICHO EM 2026</span>
-                                    </Button>
-
-                                    <div className="mt-4 flex justify-center relative z-20">
-                                        <p className="text-xs text-center text-gray-500 flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm border border-white/5">
-                                            🔒 Seus dados estão seguros. Somos anti-spam.
-                                        </p>
+                            <div id="registration-form">
+                                <Card className="border-opus-purple/50 shadow-[0_0_50px_rgba(106,17,203,0.15)]">
+                                    <div className="text-center mb-8 transform translate-z-10">
+                                        <h3 className="text-2xl font-bold text-white mb-2">Garanta sua vaga gratuita</h3>
+                                        <p className="text-sm text-gray-400">Junte-se a elite do e-commerce nacional.</p>
                                     </div>
-                                </form>
-                            </Card>
+
+                                    {status === 'success' ? (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            className="bg-green-500/10 border border-green-500/20 rounded-xl p-6 text-center"
+                                        >
+                                            <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                <span className="text-2xl">🎉</span>
+                                            </div>
+                                            <h4 className="text-xl font-bold text-white mb-2">Inscrição Confirmada!</h4>
+                                            <p className="text-gray-300 text-sm">
+                                                Você receberá todos os detalhes do webinar no seu e-mail e WhatsApp em breve.
+                                            </p>
+                                        </motion.div>
+                                    ) : (
+                                        <form className="space-y-4" onSubmit={handleSubmit}>
+                                            <Input
+                                                placeholder="Nome Completo"
+                                                icon={<User size={18} />}
+                                                required
+                                                value={formData.name}
+                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                disabled={status === 'loading'}
+                                            />
+                                            <Input
+                                                type="email"
+                                                placeholder="E-mail Corporativo"
+                                                icon={<Mail size={18} />}
+                                                required
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                disabled={status === 'loading'}
+                                            />
+                                            <Input
+                                                type="tel"
+                                                placeholder="WhatsApp / Telefone"
+                                                icon={<Phone size={18} />}
+                                                required
+                                                value={formData.phone}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                disabled={status === 'loading'}
+                                            />
+                                            <Select
+                                                icon={<ShoppingBag size={18} />}
+                                                value={formData.channel}
+                                                onChange={(e) => setFormData({ ...formData, channel: e.target.value })}
+                                                disabled={status === 'loading'}
+                                            >
+                                                <option value="" disabled>Qual seu canal de vendas principal?</option>
+                                                <option value="site">Site Próprio</option>
+                                                <option value="marketplace">Marketplace</option>
+                                                <option value="hibrido">Híbrido (Ambos)</option>
+                                                <option value="nao-vendo">Ainda não vendo</option>
+                                            </Select>
+
+                                            <Button
+                                                size="lg"
+                                                className="w-full mt-4 neon-glow group"
+                                                disabled={status === 'loading'}
+                                            >
+                                                <span className="relative z-10">
+                                                    {status === 'loading' ? 'ENVIANDO...' : 'QUERO DOMINAR MEU NICHO EM 2026'}
+                                                </span>
+                                            </Button>
+
+                                            {status === 'error' && (
+                                                <p className="text-red-400 text-xs text-center">
+                                                    Ocorreu um erro ao enviar. Por favor, tente novamente.
+                                                </p>
+                                            )}
+
+                                            <div className="mt-4 flex justify-center relative z-20">
+                                                <p className="text-xs text-center text-gray-500 flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm border border-white/5">
+                                                    🔒 Seus dados estão seguros. Somos anti-spam.
+                                                </p>
+                                            </div>
+                                        </form>
+                                    )}
+                                </Card>
+                            </div>
                         </motion.div>
                     </motion.div>
                 </div>

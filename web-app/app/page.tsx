@@ -6,6 +6,7 @@ import {
   SocialProof,
   Authority,
   Footer,
+  ExitIntentPopup,
 } from "@/components/sections";
 
 export default function Home() {
@@ -19,6 +20,9 @@ export default function Home() {
       <SocialProof />
       <Authority />
       <Footer />
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup />
     </main>
   );
 }

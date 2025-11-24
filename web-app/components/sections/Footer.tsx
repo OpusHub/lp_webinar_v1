@@ -2,6 +2,7 @@
 
 import { Button } from "../ui";
 import { motion } from "framer-motion";
+import { scrollToForm } from "@/lib/utils";
 
 export function Footer() {
     return (
@@ -17,6 +18,7 @@ export function Footer() {
                         <Button
                             size="lg"
                             noMagnetic
+                            onClick={scrollToForm}
                             className="neon-glow px-12 hover:scale-105 transition-transform duration-300"
                         >
                             GARANTIR MINHA VAGA AGORA
@@ -41,7 +43,12 @@ export function Footer() {
                 transition={{ delay: 2 }}
                 className="fixed bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-lg border-t border-white/10 md:hidden z-50"
             >
-                <Button size="lg" noMagnetic className="w-full neon-glow shadow-lg hover:scale-105 transition-transform duration-300">
+                <Button
+                    size="lg"
+                    noMagnetic
+                    onClick={scrollToForm}
+                    className="w-full neon-glow shadow-lg hover:scale-105 transition-transform duration-300"
+                >
                     GARANTIR MINHA VAGA AGORA
                 </Button>
             </motion.div>

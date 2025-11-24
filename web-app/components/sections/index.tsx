@@ -4,3 +4,4 @@ export * from "./Secrets";
 export * from "./SocialProof";
 export * from "./Authority";
 export * from "./Footer";
+export * from "./ExitIntentPopup";
