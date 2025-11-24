@@ -2,9 +2,13 @@ import { DnaBackground } from "@/components/background/DnaBackground";
 import {
   Hero,
   Tension,
-  Secrets,
+  TargetAudience,
+  LearningModules,
   SocialProof,
   Authority,
+  EventDetails,
+  Guarantees,
+  Urgency,
   Footer,
   ExitIntentPopup,
 } from "@/components/sections";
@@ -16,9 +20,13 @@ export default function Home() {
 
       <Hero />
       <Tension />
-      <Secrets />
+      <TargetAudience />
+      <LearningModules />
       <SocialProof />
       <Authority />
+      <EventDetails />
+      <Guarantees />
+      <Urgency />
       <Footer />
 
       {/* Exit Intent Popup */}

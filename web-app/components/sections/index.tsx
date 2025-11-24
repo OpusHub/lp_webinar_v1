@@ -5,3 +5,8 @@ export * from "./SocialProof";
 export * from "./Authority";
 export * from "./Footer";
 export * from "./ExitIntentPopup";
+export * from "./TargetAudience";
+export * from "./LearningModules";
+export * from "./EventDetails";
+export * from "./Guarantees";
+export * from "./Urgency";
