@@ -12,7 +12,7 @@ const EventDetails = dynamic(() => import("@/components/sections/EventDetails").
 const Guarantees = dynamic(() => import("@/components/sections/Guarantees").then(mod => mod.Guarantees));
 const Urgency = dynamic(() => import("@/components/sections/Urgency").then(mod => mod.Urgency));
 const Footer = dynamic(() => import("@/components/sections/Footer").then(mod => mod.Footer));
-const ExitIntentPopup = dynamic(() => import("@/components/sections/ExitIntentPopup").then(mod => mod.ExitIntentPopup), { ssr: false });
+const ExitIntentPopup = dynamic(() => import("@/components/sections/ExitIntentPopup").then(mod => mod.ExitIntentPopup));
 
 export default function Home() {
   return (
