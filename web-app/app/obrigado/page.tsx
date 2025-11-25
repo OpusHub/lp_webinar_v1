@@ -8,6 +8,8 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 
+import { event } from "@/components/analytics/MetaPixel";
+
 // Reuse the background for continuity
 const DnaBackground = dynamic(() => import("@/components/background/DnaBackground").then(mod => mod.DnaBackground));
 
@@ -15,6 +17,9 @@ export default function ThankYouPage() {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
+        // Track Lead event
+        event('Lead');
+
         // Animate progress bar to 90%
         const timer = setTimeout(() => {
             setProgress(90);

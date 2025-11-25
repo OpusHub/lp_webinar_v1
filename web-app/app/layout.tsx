@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "Webinar exclusivo para gestores de e-commerce. Descubra o método para parar de sangrar margem e dominar seu nicho.",
 };
 
+import MetaPixel from "@/components/analytics/MetaPixel";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
       >
+        <MetaPixel />
         {children}
       </body>
     </html>
