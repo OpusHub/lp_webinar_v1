@@ -17,7 +17,7 @@
 **[COLUNA ESQUERDA: O COPY DE VENDA]**
 
 1.  **Tag de Exclusividade (Pill Shape):**
-    * *Texto:* `EVENTO EXCLUSIVO PARA GESTORES DE E-COMMERCE`
+    * *Texto:* `EVENTO EXCLUSIVO PARA DONOS E GESTORES DE E-COMMERCE`
     * *Estilo:* Texto pequeno, Caps Lock, Cyan Neon, fundo translúcido.
 
 2.  **Headline (H1 - Impacto):**

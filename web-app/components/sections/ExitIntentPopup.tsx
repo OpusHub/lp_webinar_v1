@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Input, Button } from "../ui";
+import { useRouter } from "next/navigation";
 
 export function ExitIntentPopup() {
     const [isVisible, setIsVisible] = useState(false);
@@ -55,6 +56,8 @@ export function ExitIntentPopup() {
         };
     }, [isVisible]);
 
+    const router = useRouter();
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('loading');
@@ -74,10 +77,7 @@ export function ExitIntentPopup() {
 
             if (response.ok) {
                 setStatus('success');
-                setTimeout(() => {
-                    setIsVisible(false);
-                    alert('Inscrição confirmada! Você receberá os detalhes do webinar em breve.');
-                }, 500);
+                router.push('/obrigado');
             } else {
                 setStatus('error');
             }

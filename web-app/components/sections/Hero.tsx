@@ -5,6 +5,7 @@ import { Calendar, Clock, Hourglass, User, Mail, Phone, ShoppingBag } from "luci
 import { Button, Card, Input, Select } from "../ui";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function Hero() {
     // Form State
@@ -15,6 +16,8 @@ export function Hero() {
         channel: ""
     });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -35,6 +38,7 @@ export function Hero() {
 
             if (response.ok) {
                 setStatus('success');
+                router.push('/obrigado');
             } else {
                 setStatus('error');
             }
