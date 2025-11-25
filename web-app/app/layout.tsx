@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: "Webinar exclusivo para gestores de e-commerce. Descubra o método para parar de sangrar margem e dominar seu nicho.",
 };
 
-import MetaPixel from "@/components/analytics/MetaPixel";
+import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -31,7 +31,20 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
       >
-        <MetaPixel />
+        <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1310751963807969');
+            fbq('track', 'PageView');
+          `}
+        </Script>
         {children}
       </body>
     </html>

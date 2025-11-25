@@ -5,10 +5,9 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui";
 import { CheckCircle2, MessageCircle, Check } from "lucide-react";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 import Link from "next/link";
 import Image from "next/image";
-
-import { event } from "@/components/analytics/MetaPixel";
 
 // Reuse the background for continuity
 const DnaBackground = dynamic(() => import("@/components/background/DnaBackground").then(mod => mod.DnaBackground));
@@ -17,9 +16,6 @@ export default function ThankYouPage() {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Track Lead event
-        event('Lead');
-
         // Animate progress bar to 90%
         const timer = setTimeout(() => {
             setProgress(90);
@@ -29,6 +25,20 @@ export default function ThankYouPage() {
 
     return (
         <main className="min-h-screen relative flex flex-col items-center justify-center p-4 text-center overflow-hidden">
+            <Script id="fb-pixel-lead" strategy="afterInteractive">
+                {`
+                    !function(f,b,e,v,n,t,s)
+                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                    n.queue=[];t=b.createElement(e);t.async=!0;
+                    t.src=v;s=b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t,s)}(window, document,'script',
+                    'https://connect.facebook.net/en_US/fbevents.js');
+                    fbq('init', '1310751963807969');
+                    fbq('track', 'Lead');
+                `}
+            </Script>
             <DnaBackground />
 
             <div className="relative z-10 max-w-2xl w-full space-y-8">
