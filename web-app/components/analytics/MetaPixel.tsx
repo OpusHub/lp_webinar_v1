@@ -13,9 +13,22 @@ export const pageview = () => {
 };
 
 export const event = (name: string, options = {}) => {
-    if (typeof window.fbq !== "undefined") {
-        window.fbq("track", name, options);
-    }
+    // Retry mechanism to handle race conditions where the component mounts before Pixel is ready
+    let attempts = 0;
+    const maxAttempts = 20; // Try for 10 seconds (20 * 500ms)
+
+    const track = () => {
+        if (typeof window.fbq !== "undefined") {
+            window.fbq("track", name, options);
+        } else if (attempts < maxAttempts) {
+            attempts++;
+            setTimeout(track, 500);
+        } else {
+            console.warn(`Facebook Pixel not loaded after ${maxAttempts} attempts. Event '${name}' was not tracked.`);
+        }
+    };
+
+    track();
 };
 
 export default function MetaPixel() {
