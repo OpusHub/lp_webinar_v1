@@ -26,40 +26,29 @@ export function Tension() {
                     </h2>
                 </motion.div>
 
-                {/* 2. Chart - Static on Mobile, Animated on Desktop */}
+                {/* 2. Animated SVG Chart (Responsive) */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.8 }}
-                    className="relative w-full max-w-2xl mx-auto mb-12"
+                    className="relative w-full max-w-3xl mx-auto mb-12"
                 >
-                    {/* Mobile: Static Image */}
-                    <div className="block md:hidden relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-opus-purple/20">
-                        <Image
-                            src="/collapse-chart.png"
-                            alt="Gráfico de Colapso vs Dominação"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
+                    {/* Animated Glow Ring */}
+                    <motion.div
+                        animate={{
+                            opacity: [0.3, 0.6, 0.3],
+                            scale: [1, 1.02, 1]
+                        }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/20 via-opus-cyan/20 to-red-500/20 blur-xl pointer-events-none"
+                    />
 
-                    {/* Desktop: Animated SVG */}
-                    <div className="hidden md:block relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-opus-purple/40 bg-black p-8 md:p-12">
-                        {/* Animated Glow Ring */}
-                        <motion.div
-                            animate={{
-                                opacity: [0.3, 0.6, 0.3],
-                                scale: [1, 1.05, 1]
-                            }}
-                            transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/20 via-opus-cyan/20 to-red-500/20 blur-xl pointer-events-none"
-                        />
-
+                    <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-opus-purple/40 bg-black p-2 md:p-8">
                         <svg viewBox="0 0 800 500" className="w-full h-auto relative z-10">
                             <defs>
                                 {/* Grid Pattern */}
@@ -123,42 +112,42 @@ export function Tension() {
                             <line x1="80" y1="450" x2="750" y2="450" stroke="rgba(0,242,254,0.3)" strokeWidth="2" filter="url(#cyanNeon)" />
                             <line x1="80" y1="50" x2="80" y2="450" stroke="rgba(0,242,254,0.3)" strokeWidth="2" filter="url(#cyanNeon)" />
 
-                            {/* Y-axis labels with glow */}
-                            <text x="40" y="100" fill="#00f2fe" fontSize="13" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">High</text>
-                            <text x="40" y="250" fill="#00f2fe" fontSize="13" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">Med</text>
-                            <text x="40" y="400" fill="#00f2fe" fontSize="13" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">Low</text>
+                            {/* Y-axis labels with glow - INCREASED SIZE */}
+                            <text x="40" y="100" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">High</text>
+                            <text x="40" y="250" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">Med</text>
+                            <text x="40" y="400" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">Low</text>
 
-                            {/* X-axis labels with glow */}
-                            <text x="150" y="480" fill="#00f2fe" fontSize="13" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2020</text>
-                            <text x="300" y="480" fill="#00f2fe" fontSize="13" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2022</text>
-                            <text x="450" y="480" fill="#00f2fe" fontSize="13" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2024</text>
-                            <text x="600" y="480" fill="#ff3333" fontSize="13" fontWeight="700" textAnchor="middle" filter="url(#redNeon)">2025</text>
-                            <text x="700" y="480" fill="#00f2fe" fontSize="13" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2026</text>
+                            {/* X-axis labels with glow - INCREASED SIZE */}
+                            <text x="150" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2020</text>
+                            <text x="300" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2022</text>
+                            <text x="450" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2024</text>
+                            <text x="600" y="480" fill="#ff3333" fontSize="18" fontWeight="700" textAnchor="middle" filter="url(#redNeon)">2025</text>
+                            <text x="700" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2026</text>
 
                             {/* SHADOW/GLOW layers for Red Line */}
                             <motion.path
                                 d="M 100 400 Q 250 350 400 250 T 700 80"
                                 fill="none"
                                 stroke="#ff0000"
-                                strokeWidth="12"
-                                strokeOpacity="0.3"
+                                strokeWidth="16"
+                                strokeOpacity="0.2"
                                 filter="url(#redNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 2, ease: "easeInOut" }}
                             />
 
-                            {/* Main Red Line (Custo Operacional) */}
+                            {/* Main Red Line (Custo Operacional) - THICKER */}
                             <motion.path
                                 d="M 100 400 Q 250 350 400 250 T 700 80"
                                 fill="none"
                                 stroke="url(#redGlow)"
-                                strokeWidth="6"
+                                strokeWidth="8"
                                 filter="url(#redNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 2, ease: "easeInOut" }}
                             />
 
@@ -167,50 +156,50 @@ export function Tension() {
                                 d="M 100 100 Q 250 150 400 250 T 700 420"
                                 fill="none"
                                 stroke="#00ffff"
-                                strokeWidth="12"
+                                strokeWidth="16"
                                 strokeDasharray="10 5"
-                                strokeOpacity="0.3"
+                                strokeOpacity="0.2"
                                 filter="url(#cyanNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
                             />
 
-                            {/* Main Cyan Line (Margem Líquida) */}
+                            {/* Main Cyan Line (Margem Líquida) - THICKER */}
                             <motion.path
                                 d="M 100 100 Q 250 150 400 250 T 700 420"
                                 fill="none"
                                 stroke="url(#cyanGlow)"
-                                strokeWidth="6"
+                                strokeWidth="8"
                                 strokeDasharray="10 5"
                                 filter="url(#cyanNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
                             />
 
-                            {/* Label: Custo Operacional */}
+                            {/* Label: Custo Operacional - LARGER & ADJUSTED POSITION */}
                             <motion.g
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: 2 }}
                             >
-                                <rect x="570" y="55" width="190" height="40" rx="8" fill="rgba(255, 0, 0, 0.2)" stroke="#ff3333" strokeWidth="2" filter="url(#redNeon)" />
-                                <text x="665" y="80" fill="#ff3333" fontSize="14" fontWeight="bold" textAnchor="middle" filter="url(#redNeon)">Custo Operacional</text>
+                                <rect x="550" y="45" width="220" height="50" rx="8" fill="rgba(255, 0, 0, 0.2)" stroke="#ff3333" strokeWidth="2" filter="url(#redNeon)" />
+                                <text x="660" y="75" fill="#ff3333" fontSize="18" fontWeight="bold" textAnchor="middle" filter="url(#redNeon)">Custo Operacional</text>
                             </motion.g>
 
-                            {/* Label: Margem Líquida */}
+                            {/* Label: Margem Líquida - LARGER & ADJUSTED POSITION */}
                             <motion.g
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: 2.2 }}
                             >
-                                <rect x="580" y="400" width="160" height="40" rx="8" fill="rgba(0, 242, 254, 0.2)" stroke="#00f2fe" strokeWidth="2" filter="url(#cyanNeon)" />
-                                <text x="660" y="425" fill="#00f2fe" fontSize="14" fontWeight="bold" textAnchor="middle" filter="url(#cyanNeon)">Margem Líquida</text>
+                                <rect x="560" y="390" width="200" height="50" rx="8" fill="rgba(0, 242, 254, 0.2)" stroke="#00f2fe" strokeWidth="2" filter="url(#cyanNeon)" />
+                                <text x="660" y="420" fill="#00f2fe" fontSize="18" fontWeight="bold" textAnchor="middle" filter="url(#cyanNeon)">Margem Líquida</text>
                             </motion.g>
 
                             {/* COLLAPSE POINT - THE EXPLOSION */}
@@ -224,11 +213,11 @@ export function Tension() {
                                 <motion.circle
                                     cx="400"
                                     cy="250"
-                                    r="80"
+                                    r="100"
                                     fill="url(#explosionGlow)"
                                     opacity="0.6"
                                     animate={{
-                                        r: [60, 90, 60],
+                                        r: [80, 110, 80],
                                         opacity: [0.4, 0.7, 0.4]
                                     }}
                                     transition={{
@@ -240,39 +229,39 @@ export function Tension() {
 
                                 {/* Multiple pulsing rings */}
                                 <motion.circle
-                                    cx="400" cy="250" r="30"
-                                    fill="none" stroke="#fff" strokeWidth="3" opacity="0.4"
-                                    animate={{ r: [20, 40, 20], opacity: [0.6, 0.1, 0.6] }}
+                                    cx="400" cy="250" r="40"
+                                    fill="none" stroke="#fff" strokeWidth="4" opacity="0.4"
+                                    animate={{ r: [30, 50, 30], opacity: [0.6, 0.1, 0.6] }}
                                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                                 />
                                 <motion.circle
-                                    cx="400" cy="250" r="25"
-                                    fill="none" stroke="#ff0066" strokeWidth="2" opacity="0.5"
-                                    animate={{ r: [15, 35, 15], opacity: [0.7, 0.2, 0.7] }}
+                                    cx="400" cy="250" r="30"
+                                    fill="none" stroke="#ff0066" strokeWidth="3" opacity="0.5"
+                                    animate={{ r: [20, 40, 20], opacity: [0.7, 0.2, 0.7] }}
                                     transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                                 />
 
                                 {/* Central bright point */}
-                                <circle cx="400" cy="250" r="12" fill="#fff" filter="url(#explosion)">
+                                <circle cx="400" cy="250" r="15" fill="#fff" filter="url(#explosion)">
                                     <animate attributeName="opacity" values="1;0.6;1" dur="1s" repeatCount="indefinite" />
                                 </circle>
-                                <circle cx="400" cy="250" r="6" fill="#ff0066" filter="url(#explosion)">
-                                    <animate attributeName="r" values="6;8;6" dur="1s" repeatCount="indefinite" />
+                                <circle cx="400" cy="250" r="8" fill="#ff0066" filter="url(#explosion)">
+                                    <animate attributeName="r" values="6;9;6" dur="1s" repeatCount="indefinite" />
                                 </circle>
 
                                 {/* Warning Label with intense glow */}
-                                <rect x="265" y="210" width="270" height="55" rx="10"
+                                <rect x="250" y="200" width="300" height="65" rx="12"
                                     fill="rgba(255, 0, 0, 0.3)"
                                     stroke="#ff0000"
                                     strokeWidth="3"
                                     filter="url(#redNeon)">
-                                    <animate attributeName="stroke-width" values="3;4;3" dur="1.5s" repeatCount="indefinite" />
+                                    <animate attributeName="stroke-width" values="3;5;3" dur="1.5s" repeatCount="indefinite" />
                                 </rect>
 
-                                <text x="400" y="233" fill="#fff" fontSize="12" fontWeight="900" textAnchor="middle" filter="url(#explosion)">
+                                <text x="400" y="228" fill="#fff" fontSize="16" fontWeight="900" textAnchor="middle" filter="url(#explosion)">
                                     ⚠️ PONTO DE COLAPSO
                                 </text>
-                                <text x="400" y="252" fill="#ff3333" fontSize="16" fontWeight="900" textAnchor="middle" filter="url(#redNeon)">
+                                <text x="400" y="250" fill="#ff3333" fontSize="20" fontWeight="900" textAnchor="middle" filter="url(#redNeon)">
                                     (2025)
                                     <animate attributeName="opacity" values="1;0.7;1" dur="1s" repeatCount="indefinite" />
                                 </text>
