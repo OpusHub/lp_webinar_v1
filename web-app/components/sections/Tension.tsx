@@ -109,20 +109,20 @@ export function Tension() {
                             <rect width="800" height="500" fill="url(#grid)" />
 
                             {/* Glowing axes */}
-                            <line x1="80" y1="450" x2="750" y2="450" stroke="rgba(0,242,254,0.3)" strokeWidth="2" filter="url(#cyanNeon)" />
-                            <line x1="80" y1="50" x2="80" y2="450" stroke="rgba(0,242,254,0.3)" strokeWidth="2" filter="url(#cyanNeon)" />
+                            <line x1="80" y1="450" x2="750" y2="450" stroke="rgba(0,242,254,0.3)" strokeWidth="2" className="[filter:none] md:[filter:url(#cyanNeon)]" />
+                            <line x1="80" y1="50" x2="80" y2="450" stroke="rgba(0,242,254,0.3)" strokeWidth="2" className="[filter:none] md:[filter:url(#cyanNeon)]" />
 
                             {/* Y-axis labels with glow - INCREASED SIZE */}
-                            <text x="40" y="100" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">High</text>
-                            <text x="40" y="250" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">Med</text>
-                            <text x="40" y="400" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">Low</text>
+                            <text x="40" y="100" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">High</text>
+                            <text x="40" y="250" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">Med</text>
+                            <text x="40" y="400" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">Low</text>
 
                             {/* X-axis labels with glow - INCREASED SIZE */}
-                            <text x="150" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2020</text>
-                            <text x="300" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2022</text>
-                            <text x="450" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2024</text>
-                            <text x="600" y="480" fill="#ff3333" fontSize="18" fontWeight="700" textAnchor="middle" filter="url(#redNeon)">2025</text>
-                            <text x="700" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" filter="url(#cyanNeon)">2026</text>
+                            <text x="150" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">2020</text>
+                            <text x="300" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">2022</text>
+                            <text x="450" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">2024</text>
+                            <text x="600" y="480" fill="#ff3333" fontSize="18" fontWeight="700" textAnchor="middle" className="[filter:none] md:[filter:url(#redNeon)]">2025</text>
+                            <text x="700" y="480" fill="#00f2fe" fontSize="16" fontWeight="600" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">2026</text>
 
                             {/* SHADOW/GLOW layers for Red Line */}
                             <motion.path
@@ -131,7 +131,7 @@ export function Tension() {
                                 stroke="#ff0000"
                                 strokeWidth="16"
                                 strokeOpacity="0.2"
-                                filter="url(#redNeon)"
+                                className="[filter:none] md:[filter:url(#redNeon)]"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
                                 viewport={{ once: true, amount: 0.1 }}
@@ -144,7 +144,7 @@ export function Tension() {
                                 fill="none"
                                 stroke="url(#redGlow)"
                                 strokeWidth="8"
-                                filter="url(#redNeon)"
+                                className="[filter:none] md:[filter:url(#redNeon)]"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
                                 viewport={{ once: true, amount: 0.1 }}
@@ -159,7 +159,7 @@ export function Tension() {
                                 strokeWidth="16"
                                 strokeDasharray="10 5"
                                 strokeOpacity="0.2"
-                                filter="url(#cyanNeon)"
+                                className="[filter:none] md:[filter:url(#cyanNeon)]"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
                                 viewport={{ once: true, amount: 0.1 }}
@@ -173,7 +173,7 @@ export function Tension() {
                                 stroke="url(#cyanGlow)"
                                 strokeWidth="8"
                                 strokeDasharray="10 5"
-                                filter="url(#cyanNeon)"
+                                className="[filter:none] md:[filter:url(#cyanNeon)]"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
                                 viewport={{ once: true, amount: 0.1 }}
@@ -187,8 +187,8 @@ export function Tension() {
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.5, delay: 2 }}
                             >
-                                <rect x="550" y="45" width="220" height="50" rx="8" fill="rgba(255, 0, 0, 0.2)" stroke="#ff3333" strokeWidth="2" filter="url(#redNeon)" />
-                                <text x="660" y="75" fill="#ff3333" fontSize="18" fontWeight="bold" textAnchor="middle" filter="url(#redNeon)">Custo Operacional</text>
+                                <rect x="550" y="45" width="220" height="50" rx="8" fill="rgba(255, 0, 0, 0.2)" stroke="#ff3333" strokeWidth="2" className="[filter:none] md:[filter:url(#redNeon)]" />
+                                <text x="660" y="75" fill="#ff3333" fontSize="18" fontWeight="bold" textAnchor="middle" className="[filter:none] md:[filter:url(#redNeon)]">Custo Operacional</text>
                             </motion.g>
 
                             {/* Label: Margem Líquida - LARGER & ADJUSTED POSITION */}
@@ -198,8 +198,8 @@ export function Tension() {
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.5, delay: 2.2 }}
                             >
-                                <rect x="560" y="390" width="200" height="50" rx="8" fill="rgba(0, 242, 254, 0.2)" stroke="#00f2fe" strokeWidth="2" filter="url(#cyanNeon)" />
-                                <text x="660" y="420" fill="#00f2fe" fontSize="18" fontWeight="bold" textAnchor="middle" filter="url(#cyanNeon)">Margem Líquida</text>
+                                <rect x="560" y="390" width="200" height="50" rx="8" fill="rgba(0, 242, 254, 0.2)" stroke="#00f2fe" strokeWidth="2" className="[filter:none] md:[filter:url(#cyanNeon)]" />
+                                <text x="660" y="420" fill="#00f2fe" fontSize="18" fontWeight="bold" textAnchor="middle" className="[filter:none] md:[filter:url(#cyanNeon)]">Margem Líquida</text>
                             </motion.g>
 
                             {/* COLLAPSE POINT - THE EXPLOSION */}
@@ -242,10 +242,10 @@ export function Tension() {
                                 />
 
                                 {/* Central bright point */}
-                                <circle cx="400" cy="250" r="15" fill="#fff" filter="url(#explosion)">
+                                <circle cx="400" cy="250" r="15" fill="#fff" className="[filter:none] md:[filter:url(#explosion)]">
                                     <animate attributeName="opacity" values="1;0.6;1" dur="1s" repeatCount="indefinite" />
                                 </circle>
-                                <circle cx="400" cy="250" r="8" fill="#ff0066" filter="url(#explosion)">
+                                <circle cx="400" cy="250" r="8" fill="#ff0066" className="[filter:none] md:[filter:url(#explosion)]">
                                     <animate attributeName="r" values="6;9;6" dur="1s" repeatCount="indefinite" />
                                 </circle>
 
@@ -254,14 +254,14 @@ export function Tension() {
                                     fill="rgba(255, 0, 0, 0.3)"
                                     stroke="#ff0000"
                                     strokeWidth="3"
-                                    filter="url(#redNeon)">
+                                    className="[filter:none] md:[filter:url(#redNeon)]">
                                     <animate attributeName="stroke-width" values="3;5;3" dur="1.5s" repeatCount="indefinite" />
                                 </rect>
 
-                                <text x="400" y="228" fill="#fff" fontSize="16" fontWeight="900" textAnchor="middle" filter="url(#explosion)">
+                                <text x="400" y="228" fill="#fff" fontSize="16" fontWeight="900" textAnchor="middle" className="[filter:none] md:[filter:url(#explosion)]">
                                     ⚠️ PONTO DE COLAPSO
                                 </text>
-                                <text x="400" y="250" fill="#ff3333" fontSize="20" fontWeight="900" textAnchor="middle" filter="url(#redNeon)">
+                                <text x="400" y="250" fill="#ff3333" fontSize="20" fontWeight="900" textAnchor="middle" className="[filter:none] md:[filter:url(#redNeon)]">
                                     (2025)
                                     <animate attributeName="opacity" values="1;0.7;1" dur="1s" repeatCount="indefinite" />
                                 </text>
