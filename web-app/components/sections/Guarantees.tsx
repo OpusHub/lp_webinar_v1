@@ -69,7 +69,7 @@ export function Guarantees() {
                             "Calcular exatamente quanto dinheiro perde por mês",
                             "Decidir o momento certo de investir em arquitetura"
                         ].map((item, i) => (
-                            <div key={i} className="bg-[#0A0A0A] border border-white/5 rounded-2xl p-6 flex items-start gap-4 hover:border-opus-cyan/30 transition-colors group">
+                            <div key={i} className="md:bg-[#0A0A0A] md:border md:border-white/5 md:rounded-2xl md:p-6 flex items-start gap-4 md:hover:border-opus-cyan/30 transition-colors group">
                                 <div className="w-2 h-2 rounded-full bg-opus-cyan mt-2.5 shrink-0 group-hover:shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-shadow" />
                                 <span className="text-gray-300 text-lg leading-relaxed">{item}</span>
                             </div>

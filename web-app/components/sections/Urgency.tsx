@@ -58,7 +58,7 @@ export function Urgency() {
                                 noMagnetic
                             >
                                 <span className="relative z-10 flex items-center gap-3">
-                                    QUERO GARANTIR MINHA VAGA GRATUITA
+                                    GARANTIR MINHA VAGA
                                     <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </Button>

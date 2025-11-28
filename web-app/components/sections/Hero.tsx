@@ -212,7 +212,7 @@ export function Hero() {
                                                 disabled={status === 'loading'}
                                             >
                                                 <span className="relative z-10">
-                                                    {status === 'loading' ? 'ENVIANDO...' : 'QUERO DOMINAR MEU NICHO EM 2026'}
+                                                    {status === 'loading' ? 'ENVIANDO...' : 'GARANTIR MINHA VAGA'}
                                                 </span>
                                             </Button>
 

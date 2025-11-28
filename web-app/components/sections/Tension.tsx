@@ -26,7 +26,7 @@ export function Tension() {
                     </h2>
                 </motion.div>
 
-                {/* 2. Animated SVG Chart */}
+                {/* 2. Chart - Static on Mobile, Animated on Desktop */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -34,22 +34,33 @@ export function Tension() {
                     transition={{ duration: 0.8 }}
                     className="relative w-full max-w-2xl mx-auto mb-12"
                 >
-                    {/* Animated Glow Ring */}
-                    <motion.div
-                        animate={{
-                            opacity: [0.3, 0.6, 0.3],
-                            scale: [1, 1.05, 1]
-                        }}
-                        transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/20 via-opus-cyan/20 to-red-500/20 blur-xl"
-                    />
+                    {/* Mobile: Static Image */}
+                    <div className="block md:hidden relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-opus-purple/20">
+                        <Image
+                            src="/collapse-chart.png"
+                            alt="Gráfico de Colapso vs Dominação"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
 
-                    <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-opus-purple/40 bg-black p-8 md:p-12">
-                        <svg viewBox="0 0 800 500" className="w-full h-auto">
+                    {/* Desktop: Animated SVG */}
+                    <div className="hidden md:block relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-opus-purple/40 bg-black p-8 md:p-12">
+                        {/* Animated Glow Ring */}
+                        <motion.div
+                            animate={{
+                                opacity: [0.3, 0.6, 0.3],
+                                scale: [1, 1.05, 1]
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/20 via-opus-cyan/20 to-red-500/20 blur-xl pointer-events-none"
+                        />
+
+                        <svg viewBox="0 0 800 500" className="w-full h-auto relative z-10">
                             <defs>
                                 {/* Grid Pattern */}
                                 <pattern id="grid" width="80" height="50" patternUnits="userSpaceOnUse">
@@ -130,7 +141,7 @@ export function Tension() {
                                 fill="none"
                                 stroke="#ff0000"
                                 strokeWidth="12"
-                                opacity="0.3"
+                                strokeOpacity="0.3"
                                 filter="url(#redNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
@@ -158,7 +169,7 @@ export function Tension() {
                                 stroke="#00ffff"
                                 strokeWidth="12"
                                 strokeDasharray="10 5"
-                                opacity="0.3"
+                                strokeOpacity="0.3"
                                 filter="url(#cyanNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}

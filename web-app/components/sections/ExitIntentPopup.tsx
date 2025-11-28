@@ -175,7 +175,7 @@ export function ExitIntentPopup() {
                                 noMagnetic
                                 disabled={status === 'loading'}
                             >
-                                {status === 'loading' ? 'ENVIANDO...' : 'GARANTIR MINHA VAGA AGORA'}
+                                {status === 'loading' ? 'ENVIANDO...' : 'GARANTIR MINHA VAGA'}
                             </Button>
 
                             {status === 'error' && (
