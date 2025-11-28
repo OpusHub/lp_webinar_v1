@@ -30,7 +30,7 @@ export function Tension() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.8 }}
                     className="relative w-full max-w-3xl mx-auto mb-12"
                 >
@@ -134,7 +134,7 @@ export function Tension() {
                                 filter="url(#redNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true, margin: "-50px" }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 2, ease: "easeInOut" }}
                             />
 
@@ -147,7 +147,7 @@ export function Tension() {
                                 filter="url(#redNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true, margin: "-50px" }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 2, ease: "easeInOut" }}
                             />
 
@@ -162,7 +162,7 @@ export function Tension() {
                                 filter="url(#cyanNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true, margin: "-50px" }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
                             />
 
@@ -176,7 +176,7 @@ export function Tension() {
                                 filter="url(#cyanNeon)"
                                 initial={{ pathLength: 0 }}
                                 whileInView={{ pathLength: 1 }}
-                                viewport={{ once: true, margin: "-50px" }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
                             />
 
@@ -184,7 +184,7 @@ export function Tension() {
                             <motion.g
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.5, delay: 2 }}
                             >
                                 <rect x="550" y="45" width="220" height="50" rx="8" fill="rgba(255, 0, 0, 0.2)" stroke="#ff3333" strokeWidth="2" filter="url(#redNeon)" />
@@ -195,7 +195,7 @@ export function Tension() {
                             <motion.g
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.5, delay: 2.2 }}
                             >
                                 <rect x="560" y="390" width="200" height="50" rx="8" fill="rgba(0, 242, 254, 0.2)" stroke="#00f2fe" strokeWidth="2" filter="url(#cyanNeon)" />
@@ -206,7 +206,7 @@ export function Tension() {
                             <motion.g
                                 initial={{ opacity: 0, scale: 0 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.8, delay: 2.5, type: "spring", stiffness: 200 }}
                             >
                                 {/* Massive glow explosion */}
