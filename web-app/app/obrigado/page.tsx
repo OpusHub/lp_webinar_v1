@@ -142,7 +142,7 @@ export default function ThankYouPage() {
                         </div>
 
                         {/* CTA Button - Optimized */}
-                        <Link href="https://chat.whatsapp.com/HES292OTSNa8Mgl0jCpA2e?mode=hqrc" target="_blank">
+                        <Link href="https://chat.whatsapp.com/GYO9ZZALiLx955kuc02vzJ" target="_blank">
                             <Button
                                 size="lg"
                                 className="w-full h-20 text-xl md:text-2xl font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white border-none shadow-[0_0_40px_rgba(37,211,102,0.5)] animate-pulse hover:animate-none transition-all transform hover:scale-[1.02] flex items-center justify-center gap-4"
