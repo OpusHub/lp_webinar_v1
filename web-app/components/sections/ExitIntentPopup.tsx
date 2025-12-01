@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Input, Button } from "../ui";
 import { useRouter } from "next/navigation";
+import { formatPhone } from "../../lib/utils";
 
 export function ExitIntentPopup() {
     const [isVisible, setIsVisible] = useState(false);
@@ -70,6 +71,7 @@ export function ExitIntentPopup() {
                 },
                 body: JSON.stringify({
                     ...formData,
+                    phone: `55${formData.phone.replace(/\D/g, "")}`,
                     source: 'exit_popup',
                     submittedAt: new Date().toISOString()
                 }),
@@ -162,7 +164,7 @@ export function ExitIntentPopup() {
                                 type="tel"
                                 placeholder="Seu WhatsApp"
                                 value={formData.phone}
-                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                onChange={(e) => setFormData({ ...formData, phone: formatPhone(e.target.value) })}
                                 required
                                 className="w-full"
                                 disabled={status === 'loading'}
