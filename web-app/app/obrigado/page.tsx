@@ -23,22 +23,24 @@ export default function ThankYouPage() {
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+        const trackLead = () => {
+            if (typeof window !== 'undefined' && (window as any).fbq) {
+                (window as any).fbq('track', 'Lead');
+            } else {
+                setTimeout(() => {
+                    if (typeof window !== 'undefined' && (window as any).fbq) {
+                        (window as any).fbq('track', 'Lead');
+                    }
+                }, 1000);
+            }
+        };
+        trackLead();
+    }, []);
+
     return (
         <main className="min-h-screen relative flex flex-col items-center justify-center p-4 text-center overflow-hidden">
-            <Script id="fb-pixel-lead" strategy="afterInteractive">
-                {`
-                    !function(f,b,e,v,n,t,s)
-                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                    n.queue=[];t=b.createElement(e);t.async=!0;
-                    t.src=v;s=b.getElementsByTagName(e)[0];
-                    s.parentNode.insertBefore(t,s)}(window, document,'script',
-                    'https://connect.facebook.net/en_US/fbevents.js');
-                    fbq('init', '1310751963807969');
-                    fbq('track', 'Lead');
-                `}
-            </Script>
+
             <DnaBackground />
 
             <div className="relative z-10 max-w-2xl w-full space-y-8">
