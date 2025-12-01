@@ -6,7 +6,6 @@ import { Button, Card, Input, Select } from "../ui";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { formatPhone } from "../../lib/utils";
 
 export function Hero() {
     // Form State
@@ -32,7 +31,6 @@ export function Hero() {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    phone: `55${formData.phone.replace(/\D/g, "")}`,
                     source: 'hero_form',
                     submittedAt: new Date().toISOString()
                 }),
@@ -192,7 +190,7 @@ export function Hero() {
                                                 icon={<Phone size={18} />}
                                                 required
                                                 value={formData.phone}
-                                                onChange={(e) => setFormData({ ...formData, phone: formatPhone(e.target.value) })}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                                 disabled={status === 'loading'}
                                             />
                                             <Select
