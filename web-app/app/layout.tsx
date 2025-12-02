@@ -30,20 +30,21 @@ export default function RootLayout({
     <html lang="pt-BR">
       <head>
         {/* Google Tag (gtag.js) */}
-        <Script
+        {/* Google Tag (gtag.js) */}
+        <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-17774738308"
-          strategy="afterInteractive"
         />
-        <Script id="google-tag" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'AW-17774738308');
-          `}
-        </Script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17774738308');
+            `,
+          }}
+        />
       </head>
       <body
         className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
