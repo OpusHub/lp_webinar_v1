@@ -28,11 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
-      >
-        {/* Google Tag Manager */}
-        <Script id="gtm" strategy="afterInteractive">
+      <head>
+        {/* Google Tag Manager - Must be in head as high as possible */}
+        <Script id="gtm" strategy="beforeInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -41,9 +39,11 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-PSK6NRHN');
           `}
         </Script>
-        {/* End Google Tag Manager */}
-
-        {/* Google Tag Manager (noscript) */}
+      </head>
+      <body
+        className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
+      >
+        {/* Google Tag Manager (noscript) - Must be immediately after opening body tag */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PSK6NRHN"
