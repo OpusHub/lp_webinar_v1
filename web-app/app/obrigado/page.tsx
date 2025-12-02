@@ -25,12 +25,28 @@ export default function ThankYouPage() {
 
     useEffect(() => {
         const trackLead = () => {
+            // Facebook Pixel Lead Event
             if (typeof window !== 'undefined' && (window as any).fbq) {
                 (window as any).fbq('track', 'Lead');
             } else {
                 setTimeout(() => {
                     if (typeof window !== 'undefined' && (window as any).fbq) {
                         (window as any).fbq('track', 'Lead');
+                    }
+                }, 1000);
+            }
+
+            // Google Ads Conversion Event
+            if (typeof window !== 'undefined' && (window as any).gtag) {
+                (window as any).gtag('event', 'conversion', {
+                    'send_to': 'AW-17774738308/Im7YCPqR1MobEIT305tC'
+                });
+            } else {
+                setTimeout(() => {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                        (window as any).gtag('event', 'conversion', {
+                            'send_to': 'AW-17774738308/Im7YCPqR1MobEIT305tC'
+                        });
                     }
                 }, 1000);
             }
