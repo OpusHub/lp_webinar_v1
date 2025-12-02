@@ -28,7 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <head>
+      <body
+        className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
+      >
+        {/* Google Tag Manager - DEVE VIR PRIMEIRO */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -38,10 +41,8 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-PSK6NRHN');
           `}
         </Script>
-      </head>
-      <body
-        className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
-      >
+
+        {/* GTM noscript */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PSK6NRHN"
@@ -51,6 +52,7 @@ export default function RootLayout({
           />
         </noscript>
 
+        {/* Meta Pixel */}
         <Script id="fb-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -65,6 +67,7 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
+
         {children}
       </body>
     </html>
