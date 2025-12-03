@@ -30,23 +30,8 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
       >
-        {/* GTM - Script Component (bypassa CSP) */}
-        <Script
-          id="gtm"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtm.js?id=GTM-PSK6NRHN`}
-        />
-
-        {/* GTM DataLayer Init */}
-        <Script id="gtm-datalayer" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              'gtm.start': new Date().getTime(),
-              event: 'gtm.js'
-            });
-          `}
-        </Script>
+        {/* GTM via arquivo externo */}
+        <Script src="/gtm.js" strategy="beforeInteractive" />
 
         {/* GTM noscript */}
         <noscript>
