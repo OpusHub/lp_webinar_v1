@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Roboto } from "next/font/google";
+import { GoogleTagManager } from '@next/third-parties/google'
 import Script from "next/script";
 import "./globals.css";
 
@@ -27,22 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string} />
+
       <body
         className={`${montserrat.variable} ${roboto.variable} antialiased bg-background text-foreground`}
       >
-        {/* GTM via arquivo externo */}
-        <Script src="/gtm.js" strategy="beforeInteractive" />
-
-        {/* GTM noscript */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PSK6NRHN"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-
         {/* Meta Pixel */}
         <Script id="fb-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
