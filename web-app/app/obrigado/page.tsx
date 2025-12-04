@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui";
 import { CheckCircle2, MessageCircle, Check } from "lucide-react";
@@ -8,12 +9,29 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
 
 // Reuse the background for continuity
 const DnaBackground = dynamic(() => import("@/components/background/DnaBackground").then(mod => mod.DnaBackground));
 
-export default function ThankYouPage() {
+// Função para pegar o cookie _fbc (Facebook Click ID)
+function getFbcCookie(): string | null {
+    if (typeof document === 'undefined') return null;
+    const match = document.cookie.match(/_fbc=([^;]+)/);
+    return match ? match[1] : null;
+}
+
+// Função para pegar o cookie _fbp (Facebook Browser ID)
+function getFbpCookie(): string | null {
+    if (typeof document === 'undefined') return null;
+    const match = document.cookie.match(/_fbp=([^;]+)/);
+    return match ? match[1] : null;
+}
+
+// Componente interno que usa useSearchParams
+function ThankYouContent() {
     const [progress, setProgress] = useState(0);
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         // Animate progress bar to 90%
@@ -24,14 +42,45 @@ export default function ThankYouPage() {
     }, []);
 
     useEffect(() => {
+        // Coleta dados dos parâmetros da URL
+        const email = searchParams.get('em') || '';
+        const phone = searchParams.get('ph') || '';
+        const firstName = searchParams.get('fn') || '';
+        const lastName = searchParams.get('ln') || '';
+
         const trackLead = () => {
-            // Facebook Pixel Lead Event
+            // Facebook Pixel Lead Event com parâmetros avançados
             if (typeof window !== 'undefined' && (window as any).fbq) {
-                (window as any).fbq('track', 'Lead');
+                // Evento Lead com dados de conteúdo para melhor qualidade
+                (window as any).fbq('track', 'Lead', {
+                    content_name: 'Webinar Opus Hub - O Novo DNA do E-commerce',
+                    content_category: 'Webinar',
+                    value: 0,
+                    currency: 'BRL'
+                });
+
+                // Advanced Matching - envia dados hasheados automaticamente pelo Pixel
+                // Isso melhora significativamente a qualidade do evento
+                if (email || phone || firstName) {
+                    (window as any).fbq('init', '1177345890433498', {
+                        em: email.toLowerCase().trim(),
+                        ph: phone.replace(/\D/g, ''), // Remove não-dígitos
+                        fn: firstName.toLowerCase().trim(),
+                        ln: lastName.toLowerCase().trim(),
+                        external_id: email.toLowerCase().trim(), // ID externo para deduplicação
+                        fbc: getFbcCookie() || undefined,
+                        fbp: getFbpCookie() || undefined
+                    });
+                }
             } else {
                 setTimeout(() => {
                     if (typeof window !== 'undefined' && (window as any).fbq) {
-                        (window as any).fbq('track', 'Lead');
+                        (window as any).fbq('track', 'Lead', {
+                            content_name: 'Webinar Opus Hub - O Novo DNA do E-commerce',
+                            content_category: 'Webinar',
+                            value: 0,
+                            currency: 'BRL'
+                        });
                     }
                 }, 1000);
             }
@@ -52,7 +101,7 @@ export default function ThankYouPage() {
             }
         };
         trackLead();
-    }, []);
+    }, [searchParams]);
 
     return (
         <main className="min-h-screen relative flex flex-col items-center justify-center p-4 text-center overflow-hidden">
@@ -181,5 +230,18 @@ export default function ThankYouPage() {
                 </motion.div>
             </div>
         </main>
+    );
+}
+
+// Componente principal exportado com Suspense para suportar useSearchParams
+export default function ThankYouPage() {
+    return (
+        <Suspense fallback={
+            <main className="min-h-screen flex items-center justify-center bg-black">
+                <div className="text-white text-xl">Carregando...</div>
+            </main>
+        }>
+            <ThankYouContent />
+        </Suspense>
     );
 }

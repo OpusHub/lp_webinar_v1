@@ -77,7 +77,14 @@ export function ExitIntentPopup() {
 
             if (response.ok) {
                 setStatus('success');
-                router.push('/obrigado');
+                // Passa dados para a página de obrigado para melhorar qualidade do evento Lead
+                const params = new URLSearchParams({
+                    em: formData.email,
+                    ph: formData.phone,
+                    fn: formData.name.split(' ')[0] || '',
+                    ln: formData.name.split(' ').slice(1).join(' ') || ''
+                });
+                router.push(`/obrigado?${params.toString()}`);
             } else {
                 setStatus('error');
             }
